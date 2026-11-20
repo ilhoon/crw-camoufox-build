@@ -11,7 +11,7 @@ on:
         required: false
       platforms:
         description: "linux/amd64, linux/arm64"
-        default: "linux/amd64"
+        default: "linux/amd64,linux/arm64"
         required: true
       features:
         description: "crw-server cargo features"
@@ -71,7 +71,7 @@ jobs:
         with:
           context: .
           push: true
-          platforms: ${{ inputs.platforms || 'linux/amd64' }}
+          platforms: ${{ inputs.platforms || 'linux/amd64,linux/arm64' }}
           build-args: |
             CARGO_PKGS=-p crw-server --features ${{ inputs.features || 'cdp,impersonated,camoufox' }} -p crw-mcp -p crw-cli
           tags: |
